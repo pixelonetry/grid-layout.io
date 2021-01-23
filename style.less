@@ -1,0 +1,35 @@
+// compress: true
+
+@breakpoint: ~"(max-widht:992px)";
+@columns: 12;
+@grid-widht: 1200px;
+// grid 
+.container {
+    width: 100%;
+    max-width: @grid-widht;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -1rem;
+    margin-right: -1rem;
+}
+.grid(@columns, @i: 1) when (@i <= @columns) {
+    .col-@{i} {
+        width: percentage(@i / @columns);
+        padding-left: 1rem;
+        padding-right: 1rem;
+        flex: 1;
+    }
+    .grid(@columns, @i + 1)
+}
+.grid(@columns);
+@media @breakpoint {
+    .container {
+        position: fixed;
+    }
+}
